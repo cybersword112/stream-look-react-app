@@ -8,16 +8,21 @@ import React from 'react';
 function App() {
 
   const [list,setList] = React.useState([])
+  const [search,setSearch] =React.useState('')
 
-async function fetchMovies(choice){
+async function fetchMovies(){
   const KEY = "cragphpKTzQkID1PoMMIlfPlGbUb9fOEU5JJjykQ"
+  let choice = search
   const url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${KEY}&search_value=${choice}&search_type=2`
 
   let result = await fetch(url)
   let data = await result.json()
-  console.log(data)
-  let list = (data["results"])
+  console.log(data.results)
+  let list = (data.results)
   setList(list)
+}
+function updateSearch(e){
+  setSearch(e.target.value)
 }
 
   return (
@@ -27,10 +32,10 @@ async function fetchMovies(choice){
       StreamLook!
     </h1>
     <div className = "m-5 flex-col">
-      <SearchInput fetchMovies={fetchMovies} />
+      <SearchInput fetchMovies={fetchMovies} updateSearch={updateSearch} search = {search}/>
     </div>
-    <div>
-    <ResultList list={list}/>
+    <div className='w-9/12'>
+      <ResultList list={list}/>
     </div>
     <Example />
   </div>

@@ -1,9 +1,13 @@
 import ResultItem from './ResultItem'
 
+
+
 const ResultList = (props) => {
   return (
-    <ul>
-        <ResultItem />
+    <ul className='flex-col flex-wrap w-full'>
+        {props.list.map((movie)=>{
+           return <ResultItem key={movie.id} movie={movie}/>
+        })}
     </ul>
   )
 }

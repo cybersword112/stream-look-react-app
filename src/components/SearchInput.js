@@ -2,8 +2,10 @@ const SearchInput = (props) =>{
 
   return (
     <>
-        <input type='text' className="text-2xl text-left text-black w-max border-black" />
-        <button className="bg-black text-white p-2.5 w-fit mt-4 mx-4">
+        <input type='text' className="text-2xl text-left text-black w-max border-black" 
+        onChange={props.updateSearch.bind(this)} 
+        value = {props.search} />
+        <button className="bg-black text-white p-2.5 w-fit mt-4 mx-4" onClick={props.fetchMovies}>
           Search
         </button>
     </>
