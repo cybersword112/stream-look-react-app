@@ -1,14 +1,41 @@
+import React from "react"
+import ServiceResultList from "./ServiceResultList"
+
 const ResultItem = (props) => {
-  return (
-    <li className="w-1/4 p-4">
-        <a href="" onClick={(e)=>{props.fetchServices(e,props.movie.id)}}>
-            <h2 className="text-center">
-                {props.movie.name} ({props.movie.year})
-            </h2>
-            <img src={props.movie.image_url} className="w-full"/>
-        </a>
-    </li>
-  )
+  const [services,setServices] = React.useState([])
+  // const [showList,setShowList] = React.useState(false)
+  // const [movieId,setMovieId] = React.useState(props.movie.id)
+
+  async function fetchServices(e){
+    e.preventDefault()
+    const KEY = "cragphpKTzQkID1PoMMIlfPlGbUb9fOEU5JJjykQ"
+    const title_id = props.movie.id
+    console.log(title_id)
+    const sourceurl = `https://api.watchmode.com/v1/title/${title_id}/sources/?apiKey=${KEY}`
+    let result = await fetch(sourceurl)
+    let services = await result.json()
+    services.map((service,index)=>{
+      return service.id = index
+    })
+    console.log(services)
+    setServices(services)
+  }
+
+
+    return (
+      <li className="w-1/4 p-4">
+      <a href="" onClick={(e)=>fetchServices(e)}>
+          <h2 className="text-center">
+              {props.movie.name} ({props.movie.year})
+          </h2>
+          <img src={props.movie.image_url} className="w-full"/>
+      </a>
+        <ul>
+          <ServiceResultList services={services} />
+        </ul>
+      </li>
+    )
+  
 }
 
 export default ResultItem

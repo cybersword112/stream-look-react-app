@@ -9,6 +9,8 @@ const ResultList = (props) => {
             movie={movie} 
             fetchServices={props.fetchServices} 
             updateId={props.updateId} 
+            services={props.services}
+            movieId = {props.movieId}
            />
         })}
     </ul>
