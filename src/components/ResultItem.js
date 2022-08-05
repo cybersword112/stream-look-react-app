@@ -1,13 +1,12 @@
 const ResultItem = (props) => {
   return (
-    <li className="w-1/4">
-        <div className="">
-            <h2>
-                {props.movie.name}
+    <li className="w-1/4 p-4">
+        <a href="" onClick={(e)=>{props.fetchServices(e,props.movie.id)}}>
+            <h2 className="text-center">
+                {props.movie.name} ({props.movie.year})
             </h2>
             <img src={props.movie.image_url} className="w-full"/>
-            <p>description</p>
-        </div>
+        </a>
     </li>
   )
 }
@@ -24,7 +23,7 @@ export default ResultItem
 //             "year": 1996,
 //             "result_type": "title",
 //             "tmdb_id": 537,
-//             "tmdb_type": "tv",
+//             "tmdb_type": " w-fulltv",
 //             "image_url": "https://cdn.watchmode.com/posters/0352234_poster_w185.jpg"
 //         },
 //         {
