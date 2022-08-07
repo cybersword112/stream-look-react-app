@@ -1,7 +1,8 @@
 import React from 'react'
 import SelectableServicesItem from './SelectableServicesItem'
 const SelectableServicesList = (props) => {
-
+    const [allChecked,setAllChecked] = React.useState(false)
+    
     const shortListServices = [
         {
             "id": 203,
@@ -71,12 +72,25 @@ const SelectableServicesList = (props) => {
             "logo_100px": "https://cdn.watchmode.com/provider_logos/crunchyroll_100px.png",
         },
       ]
-    
+    function checkAll(){
+        setAllChecked(!allChecked)
+    }
 
   return (
     <ul>
+        <li>
+            <input type="checkbox" id='all' value='all' onChange={()=>{
+                checkAll()
+                }} />
+            <label className="text-xl" htmlFor='all'>UnCheck All</label>
+        </li>
         {shortListServices.map(serviceItem=>{
-            return <SelectableServicesItem key={serviceItem['id']} serviceItem={serviceItem} selectServices={props.selectServices} servicesSelected={props.servicesSelected}/>
+            return <SelectableServicesItem 
+            key={serviceItem['id']} 
+            serviceItem={serviceItem} 
+            selectServices={props.selectServices}
+            servicesSelected={props.servicesSelected} 
+            allChecked={allChecked}/>
         })}
     </ul>
   )

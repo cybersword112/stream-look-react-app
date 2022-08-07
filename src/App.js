@@ -9,13 +9,18 @@ function App() {
 
   const [list, setList] = React.useState([])
   const [search, setSearch] = React.useState('')
-  const [servicesSelected,setServicesSelected] = React.useState(localStorage.getItem('services')||[])
+  const [servicesSelected,setServicesSelected] = React.useState([])
   const [showCard, setShowCard] = React.useState(false)
 
   React.useEffect(() => {
-    // Update the document title using the browser API
-    
-  });
+    if(localStorage.getItem('services')){
+      let list = JSON.parse(localStorage.getItem('services'))
+      setServicesSelected(list)
+      console.log(list)
+    }else(
+      localStorage.setItem('services',JSON.stringify(servicesSelected))
+    )
+  },[]);
 
 
   const shortListServices = [
@@ -93,15 +98,8 @@ function App() {
     const KEY = process.env.REACT_APP_WATCHMODE_API_KEY
     let choice = search
     const url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${KEY}&search_value=${choice}&search_type=2`
-    // const altUrl = `https://api.watchmode.com/v1/regions/?apiKey=${KEY}`
-    // const altUrl = `https://api.watchmode.com/v1/sources/?apiKey=${KEY}&types=sub&regions=US`
-
-    // let sources = await fetch(altUrl)
-    // let sourcesJson = await sources.json()
-    // console.log(sourcesJson)
     let result = await fetch(url)
     let data = await result.json()
-    console.log(data.results)
     let list = (data.results)
     setList(list)
   }
@@ -111,17 +109,14 @@ function App() {
   }
 
   function selectServices(id){
-    console.log(id)
     let services = servicesSelected
-    console.log(services)
     let index = services.indexOf(id)
     if(index !== -1){
       services.splice(index,1)
     }else{
       services.push(id)
     }
-    console.log(services)
-    localStorage.setItem('services',services)
+    localStorage.setItem('services',JSON.stringify(services))
     setServicesSelected(services)
   }
 
@@ -140,7 +135,7 @@ function App() {
           <SideCard showCard={showCard} openSelectServices={openSelectServices} selectServices={selectServices} servicesSelected={servicesSelected} />
         </div>
         <div className='container w-9/12'>
-          <ResultList list={list} />
+          <ResultList list={list} servicesSelected={servicesSelected}/>
         </div>
       </div>
     </div>

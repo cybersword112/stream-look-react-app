@@ -7,6 +7,7 @@ const ResultList = (props) => {
            return <ResultItem 
             key={movie.id} 
             movie={movie}
+            servicesSelected={props.servicesSelected}
            />
         })}
     </ul>
