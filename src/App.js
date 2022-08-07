@@ -9,8 +9,14 @@ function App() {
 
   const [list, setList] = React.useState([])
   const [search, setSearch] = React.useState('')
-  const [servicesSelected,setServicesSelected] = React.useState([])
+  const [servicesSelected,setServicesSelected] = React.useState(localStorage.getItem('services')||[])
   const [showCard, setShowCard] = React.useState(false)
+
+  React.useEffect(() => {
+    // Update the document title using the browser API
+    
+  });
+
 
   const shortListServices = [
   {
@@ -104,9 +110,19 @@ function App() {
     setShowCard(!showCard)
   }
 
-  function selectServices(array){
-
-    setServicesSelected(array)
+  function selectServices(id){
+    console.log(id)
+    let services = servicesSelected
+    console.log(services)
+    let index = services.indexOf(id)
+    if(index !== -1){
+      services.splice(index,1)
+    }else{
+      services.push(id)
+    }
+    console.log(services)
+    localStorage.setItem('services',services)
+    setServicesSelected(services)
   }
 
   function updateSearch(e) {
@@ -118,10 +134,10 @@ function App() {
       <Header />
       <div className="min-h-screen bg-lime-400 flex flex-col items-center shadow-inner">
         <div className="m-5 flex-col">
-          <SearchInput fetchMovies={fetchMovies} updateSearch={updateSearch} search={search} openSelectServices={openSelectServices} />
+          <SearchInput fetchMovies={fetchMovies} updateSearch={updateSearch} search={search} openSelectServices={openSelectServices}  />
         </div>
         <div>
-          <SideCard showCard={showCard} openSelectServices={openSelectServices} />
+          <SideCard showCard={showCard} openSelectServices={openSelectServices} selectServices={selectServices} servicesSelected={servicesSelected} />
         </div>
         <div className='container w-9/12'>
           <ResultList list={list} />

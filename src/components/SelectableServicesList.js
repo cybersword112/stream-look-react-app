@@ -1,6 +1,6 @@
 import React from 'react'
 import SelectableServicesItem from './SelectableServicesItem'
-const SelectableServicesList = () => {
+const SelectableServicesList = (props) => {
 
     const shortListServices = [
         {
@@ -76,7 +76,7 @@ const SelectableServicesList = () => {
   return (
     <ul>
         {shortListServices.map(serviceItem=>{
-            return <SelectableServicesItem key={serviceItem['id']} serviceItem={serviceItem} />
+            return <SelectableServicesItem key={serviceItem['id']} serviceItem={serviceItem} selectServices={props.selectServices} servicesSelected={props.servicesSelected}/>
         })}
     </ul>
   )
