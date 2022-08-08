@@ -12,15 +12,16 @@ function App() {
   const [servicesSelected,setServicesSelected] = React.useState([])
   const [showCard, setShowCard] = React.useState(false)
 
+  const [allChecked,setAllChecked] = React.useState(false)
+
   React.useEffect(() => {
     if(localStorage.getItem('services')){
       let list = JSON.parse(localStorage.getItem('services'))
       setServicesSelected(list)
-      console.log(list)
     }else(
       localStorage.setItem('services',JSON.stringify(servicesSelected))
     )
-  },[]);
+  },[allChecked]);
 
 
   const shortListServices = [
@@ -93,6 +94,31 @@ function App() {
   },
 ]
 
+function checkAll(){
+  selectServices(null,'all')
+  setAllChecked(!allChecked)
+  // let ids = []
+  // for(let i =0;i<shortListServices.length;i++){
+  //         ids.push(shortListServices[i]['id'])
+  // }
+  // setAllChecked(!allChecked)
+  // localStorage.setItem('allChecked',JSON.stringify(!allChecked))
+
+  // let equality = true
+  // for(let i =0;i<ids.length;i++){
+  //   if(ids[i] !== servicesSelected[i]){
+  //     equality= false
+  //     break
+  //   }
+  // }
+
+  // if(equality){
+  //   console.log('all')
+  //   selectServices([])
+  // }else{
+  //   selectServices(ids)
+  // }
+}
 
   async function fetchMovies() {
     const KEY = process.env.REACT_APP_WATCHMODE_API_KEY
@@ -108,16 +134,32 @@ function App() {
     setShowCard(!showCard)
   }
 
-  function selectServices(id){
-    let services = servicesSelected
-    let index = services.indexOf(id)
-    if(index !== -1){
-      services.splice(index,1)
+  function selectServices(id,all){
+    if(all){
+      console.log(servicesSelected.length)
+      if(servicesSelected.length){
+        console.log('all, servicessellected')
+        localStorage.setItem('services',[])
+        setServicesSelected([])
+      }else{
+        console.log('all,else')
+        let services =[]
+        shortListServices.forEach(item=>services.push(item['id']))
+        localStorage.setItem('services',JSON.stringify(services))
+        setServicesSelected(services)
+      }
     }else{
-      services.push(id)
+      console.log(id)
+      let services = servicesSelected
+      let index = services.indexOf(id)
+      if(index !== -1){
+        services.splice(index,1)
+      }else{
+        services.push(id)
+      }
+      localStorage.setItem('services',JSON.stringify(services))
+      setServicesSelected(services)
     }
-    localStorage.setItem('services',JSON.stringify(services))
-    setServicesSelected(services)
   }
 
   function updateSearch(e) {
@@ -132,7 +174,14 @@ function App() {
           <SearchInput fetchMovies={fetchMovies} updateSearch={updateSearch} search={search} openSelectServices={openSelectServices}  />
         </div>
         <div>
-          <SideCard showCard={showCard} openSelectServices={openSelectServices} selectServices={selectServices} servicesSelected={servicesSelected} />
+          <SideCard showCard={showCard} 
+          openSelectServices={openSelectServices} 
+          selectServices={selectServices} 
+          servicesSelected={servicesSelected} 
+          checkAll = {checkAll}
+          allChecked= {allChecked}
+          shortListServices = {shortListServices}
+          />
         </div>
         <div className='container w-9/12'>
           <ResultList list={list} servicesSelected={servicesSelected}/>

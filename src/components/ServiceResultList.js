@@ -1,5 +1,7 @@
 import ServiceItem from './ServiceItem'
 
+
+
 const ServiceResultList = (props) => {
   return (
     <ul id="services" className='bg-slate-900/50 text-white'>
@@ -12,7 +14,14 @@ const ServiceResultList = (props) => {
             return true
           }
         }).map((service,index,array)=>{
+          console.log(array.length > 0)
+          console.log(!array)
+
+          if(!array){
+            return <li><p>no services</p></li>
+          }else{
             return <ServiceItem key={service['id']} service={service} />
+          }
         })}
     </ul>
   )

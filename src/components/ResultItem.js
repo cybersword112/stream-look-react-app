@@ -20,7 +20,7 @@ const ResultItem = (props) => {
 
 
     return (
-      <li className="w-1/4 p-4">
+      <li className="w-11/12 sm:w-1/4 p-4">
       <a href="" onClick={(e)=>fetchServices(e)}>
           <h2 className="text-center">
               {props.movie.name} ({props.movie.year})

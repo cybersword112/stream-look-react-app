@@ -61,7 +61,14 @@ export default function SideCard(props) {
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
                       {/* Replace with your content */}
                       <div className="absolute inset-0 px-4 sm:px-6">
-                        <SelectableServicesList selectServices={props.selectServices} servicesSelected={props.servicesSelected} />
+                      <h2 className='pb-2'>Note: to search all services including those not listed here, leave all boxes unchecked.</h2>
+                        <SelectableServicesList 
+                        selectServices={props.selectServices} 
+                        servicesSelected={props.servicesSelected} 
+                        shortListServices ={props.shortListServices}
+                        checkAll = {props.checkAll}
+                        allChecked ={props.allChecked}
+                        />
                       </div>
                       {/* /End replace */}
                     </div>
