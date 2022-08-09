@@ -9,7 +9,6 @@ const ResultList = (props) => {
             key={movie.id} 
             movie={movie}
             servicesSelected={props.servicesSelected}
-            getResultCount={props.getResultCount}
            />
         })}
     </ul>
