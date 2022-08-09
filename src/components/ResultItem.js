@@ -34,7 +34,8 @@ const ResultItem = (props) => {
     return (
       <li className="w-1/2 sm:w-2/6 lg:w-1/4 p-4">
         <div className="bg-gray-600/50 p-5 rounded">
-          <a className="hover:underline  hover:text-2xl text-xl text-white" href="" onClick={(e)=>{
+          {/*eslint-disable-next-line jsx-a11y/anchor-is-valid */} 
+          <a className="hover:underline  hover:text-2xl text-xl text-white" onClick={(e)=>{
             fetchServices(e)
           }}>
               <h2 className="pb-2 text-center">
