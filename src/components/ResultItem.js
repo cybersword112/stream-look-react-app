@@ -40,7 +40,7 @@ const ResultItem = (props) => {
               <h2 className="pb-2 text-center">
                   {props.movie.name} ({props.movie.year})
               </h2>
-              <img src={props.movie.image_url} className="w-full rounded"/>
+              <img src={props.movie.image_url} alt="movie poster" className="w-full rounded"/>
           </a>
         </div>
           <div className="bg-grey-800 ">

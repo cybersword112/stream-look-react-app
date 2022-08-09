@@ -22,7 +22,7 @@ const SelectableServicesItem = (props) => {
                 setServiceIsSelected(!serviceIsSelected)
             }}/>
             <div className="ml-5">
-                <img className="h-16 shadow-xl border"  src={props.serviceItem['logo_100px']}/>    
+                <img className="h-16 shadow-xl border" alt="service logo" src={props.serviceItem['logo_100px']}/>    
             </div>
             <label className="text-xl ml-4" htmlFor={props.serviceItem['name']}>{props.serviceItem['name']}</label>
     </li>

@@ -1,5 +1,4 @@
 import React from 'react'
-import Dropdown from './Dropdown'
 const Header = () => {
   return (
     <div className=" h-fit text-white bg-slate-800 p-16 shadow-inner">
