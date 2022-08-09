@@ -3,6 +3,7 @@ import ResultList from './components/ResultList';
 import React from 'react';
 import Header from './components/Header';
 import SideCard from './components/SideCard';
+import Footer from './components/Footer';
 // use local storage and useeffect to store what services someone has subscribed too
 
 function App() {
@@ -167,27 +168,33 @@ function checkAll(){
   }
 
   return (
-    <div>
-      <Header />
-      <div className="min-h-screen bg-lime-400 flex flex-col items-center shadow-inner">
-        <div className="m-5 flex-col">
-          <SearchInput fetchMovies={fetchMovies} updateSearch={updateSearch} search={search} openSelectServices={openSelectServices}  />
+    <div className='bg-slate-500 min-h-screen h-fitflex flex-col'>
+        <Header />
+        <div className="bg-blue-400/70 flex flex-col items-center shadow-inner h-max">
+          <div className="w-full text-center bg-black text-white p-5">
+            <h2 className="text-2xl">
+              Search for movies or TV shows<br/>Find where they are available to stream or rent
+            </h2>
+          </div>
+          <div id="search" className="flex sm:flex-row items-center sm:justify-center p-5 flex-col bg-slate-500 w-full">
+            <SearchInput fetchMovies={fetchMovies} updateSearch={updateSearch} search={search} openSelectServices={openSelectServices}  />
+          </div>
+          <div>
+            <SideCard showCard={showCard} 
+            openSelectServices={openSelectServices} 
+            selectServices={selectServices} 
+            servicesSelected={servicesSelected} 
+            checkAll = {checkAll}
+            allChecked= {allChecked}
+            shortListServices = {shortListServices}
+            />
+          </div>
+          <div className='container w-9/12 pt-5'>
+            <ResultList list={list} servicesSelected={servicesSelected}/>
+          </div>
         </div>
-        <div>
-          <SideCard showCard={showCard} 
-          openSelectServices={openSelectServices} 
-          selectServices={selectServices} 
-          servicesSelected={servicesSelected} 
-          checkAll = {checkAll}
-          allChecked= {allChecked}
-          shortListServices = {shortListServices}
-          />
-        </div>
-        <div className='container w-9/12'>
-          <ResultList list={list} servicesSelected={servicesSelected}/>
-        </div>
+        <Footer />
       </div>
-    </div>
   );
 }
 
