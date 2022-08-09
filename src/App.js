@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 function App() {
 
   const [list, setList] = React.useState([])
+  const [resultCount, setResultCount] = React.useState(0)
   const [search, setSearch] = React.useState('')
   const [servicesSelected,setServicesSelected] = React.useState([])
   const [showCard, setShowCard] = React.useState(false)
@@ -98,27 +99,6 @@ function App() {
 function checkAll(){
   selectServices(null,'all')
   setAllChecked(!allChecked)
-  // let ids = []
-  // for(let i =0;i<shortListServices.length;i++){
-  //         ids.push(shortListServices[i]['id'])
-  // }
-  // setAllChecked(!allChecked)
-  // localStorage.setItem('allChecked',JSON.stringify(!allChecked))
-
-  // let equality = true
-  // for(let i =0;i<ids.length;i++){
-  //   if(ids[i] !== servicesSelected[i]){
-  //     equality= false
-  //     break
-  //   }
-  // }
-
-  // if(equality){
-  //   console.log('all')
-  //   selectServices([])
-  // }else{
-  //   selectServices(ids)
-  // }
 }
 
   async function fetchMovies() {
@@ -162,6 +142,9 @@ function checkAll(){
       setServicesSelected(services)
     }
   }
+  function getResultCount(count){
+    setResultCount(count)
+  }
 
   function updateSearch(e) {
     setSearch(e.target.value)
@@ -170,7 +153,7 @@ function checkAll(){
   return (
     <div className='bg-slate-500 min-h-screen h-fitflex flex-col'>
         <Header />
-        <div className="bg-blue-400/70 flex flex-col items-center shadow-inner h-max">
+        <div className="bg-blue-400/70 flex flex-col items-center shadow-inner h-max ">
           <div className="w-full text-center bg-black text-white p-5">
             <h2 className="text-2xl">
               Search for movies or TV shows<br/>Find where they are available to stream or rent
@@ -189,8 +172,9 @@ function checkAll(){
             shortListServices = {shortListServices}
             />
           </div>
-          <div className='container w-9/12 pt-5'>
-            <ResultList list={list} servicesSelected={servicesSelected}/>
+          <div className='container w-11/12 sm:w-9/12 pt-5 pb-5 min-h-screen '>
+            <h2 className='text-center text-2xl hover:font-bold mb-3'>Results: {list.length}</h2>
+            <ResultList list={list} servicesSelected={servicesSelected} getResultCount={getResultCount} />
           </div>
         </div>
         <Footer />

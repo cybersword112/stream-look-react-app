@@ -32,17 +32,21 @@ const ResultItem = (props) => {
     }
   }
     return (
-      <li className="w-11/12 sm:w-1/2 lg:w-1/4 p-4">
-        <a href="" onClick={(e)=>{
-          fetchServices(e)
+      <li className="w-1/2 sm:w-2/6 lg:w-1/4 p-4">
+        <div className="bg-gray-600/50 p-5 rounded">
+          <a className="hover:underline  hover:text-2xl text-xl text-white" href="" onClick={(e)=>{
+            fetchServices(e)
           }}>
-            <h2 className="text-center">
-                {props.movie.name} ({props.movie.year})
-            </h2>
-            <img src={props.movie.image_url} className="w-full rounded"/>
-        </a>
-        <ServiceResultList services={services} servicesSelected={props.servicesSelected}/>
-        <span hidden={servicesAvailable}>Not available on your selected services</span>
+              <h2 className="pb-2 text-center">
+                  {props.movie.name} ({props.movie.year})
+              </h2>
+              <img src={props.movie.image_url} className="w-full rounded"/>
+          </a>
+        </div>
+          <div className="bg-grey-800 ">
+            <ServiceResultList services={services} servicesSelected={props.servicesSelected}/>
+            <span hidden={servicesAvailable}>Not available on your selected services</span>
+          </div>
       </li>
     )
 }
