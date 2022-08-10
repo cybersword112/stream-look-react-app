@@ -147,15 +147,15 @@ function checkAll(){
   }
 
   return (
-    <div className='bg-slate-500 min-h-screen h-fitflex flex-col'>
+    <div className='bg-gradient-to-t from-blue-500 to-cyan-500 min-h-screen h-fitflex flex-col shadow-inner'>
         <Header />
-        <div className="bg-blue-400/70 flex flex-col items-center shadow-inner h-max ">
-          <div className="w-full text-center bg-black text-white p-5">
-            <h2 className="text-2xl">
+        <div className="flex flex-col items-center h-max ">
+          <div className="w-full text-center text-white p-5 bg-gradient-to-r from-cyan-500 to-blue-500 ">
+            <h2 className="text-2xl ">
               Search for movies or TV shows<br/>Find where they are available to stream or rent
             </h2>
           </div>
-          <div id="search" className="flex sm:flex-row items-center sm:justify-center p-5 flex-col bg-slate-500 w-full">
+          <div id="search" className="flex sm:flex-row items-center sm:justify-center p-5 flex-col bg-gray-800/40 shadow-xl w-full">
             <SearchInput fetchMovies={fetchMovies} updateSearch={updateSearch} search={search} openSelectServices={openSelectServices}  />
           </div>
           <div>
@@ -168,7 +168,7 @@ function checkAll(){
             shortListServices = {shortListServices}
             />
           </div>
-          <div className='container w-11/12 sm:w-9/12 pt-5 pb-5 min-h-screen '>
+          <div className='container w-11/12 sm:w-9/12 pt-5 pb-5 min-h-screen shadow-2xl bg-indigo-400/50'>
             <h2 className='text-center text-2xl hover:font-bold mb-3'>Results: {list.length}</h2>
             <ResultList list={list} servicesSelected={servicesSelected} />
           </div>
