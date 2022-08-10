@@ -101,13 +101,22 @@ function checkAll(){
 }
 
   async function fetchMovies() {
+    try{
     const KEY = process.env.REACT_APP_WATCHMODE_API_KEY
     let choice = search
-    const url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${KEY}&search_value=${choice}&search_type=2`
-    let result = await fetch(url)
-    let data = await result.json()
-    let list = (data.results)
-    setList(list)
+    if( choice !== ''){
+      const url = `https://api.watchmode.com/v1/autocomplete-search/?apiKey=${KEY}&search_value=${choice}&search_type=2`
+      let result = await fetch(url)
+      let data = await result.json()
+      let list = (data.results)
+      setList(list)
+    }else{
+      alert('Please enter an input.')
+    }
+    }
+    catch(error){
+      console.log(error)
+    }
   }
 
   function openSelectServices() {
