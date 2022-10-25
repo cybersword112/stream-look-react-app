@@ -1,8 +1,8 @@
 import React from 'react'
 const Header = () => {
   return (
-    <div className=" h-fit text-white bg-slate-800/60 p-12 shadow-inner">
-      <h1 className="text-6xl font-bold font-mono text-center">
+    <div className=" h-fit text-white bg-deepSeaBlue p-12 shadow-inner">
+      <h1 className="text-6xl text-center italic" >
           StreamLook
       </h1>
     {/* <Dropdown /> */}

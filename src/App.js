@@ -156,19 +156,19 @@ function checkAll(){
   }
 
   return (
-    <div className='bg-gradient-to-t from-blue-500 to-cyan-500 min-h-screen h-fitflex flex-col shadow-inner'>
+    <div className='bg-fishFinBlue min-h-screen h-fit flex flex-col shadow-inner'>
         <Header />
         <div className="flex flex-col items-center h-max ">
-          <div className="w-full text-center text-white p-5 bg-gradient-to-r from-cyan-500 to-blue-500 ">
+          <div className="w-full text-center text-deepSeaBlue font-bold p-5 bg-fishFinBlue ">
             <h2 className="text-2xl ">
               Search for movies or TV shows<br/>Find where they are available to stream or rent
             </h2>
           </div>
-          <div id="search" className="flex sm:flex-row items-center sm:justify-center p-5 flex-col bg-gray-800/40 shadow-xl w-full">
+          <div id="search" className="flex sm:flex-row items-center sm:justify-center p-5 flex-col bg-deepSeaBlue shadow-xl w-full">
             <SearchInput fetchMovies={fetchMovies} updateSearch={updateSearch} search={search} openSelectServices={openSelectServices}  />
           </div>
           <div>
-            <SideCard showCard={showCard} 
+            <SideCard showCard={showCard}
             openSelectServices={openSelectServices} 
             selectServices={selectServices} 
             servicesSelected={servicesSelected} 
@@ -177,8 +177,8 @@ function checkAll(){
             shortListServices = {shortListServices}
             />
           </div>
-          <div className='container w-11/12 sm:w-9/12 pt-5 pb-5 min-h-screen shadow-2xl bg-indigo-400/50'>
-            <h2 className='text-center text-2xl hover:font-bold mb-3'>Results: {list.length}</h2>
+          <div className='container rounded w-11/12 sm:w-9/12 pt-5 my-2 pb-5 min-h-1/2 shadow-2xl bg-deepSeaBlue '>
+            <h2 className='text-center text-flatFishOrange text-2xl hover:font-bold mb-3'>Results: {list.length}</h2>
             <ResultList list={list} servicesSelected={servicesSelected} />
           </div>
         </div>
